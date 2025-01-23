@@ -1,0 +1,243 @@
+.page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  position: fixed;
+  top: 60px;
+}
+.page .very-left-column {
+  display: flex;
+  flex-direction: column;
+  border-right: 0.1px solid grey;
+}
+.page .very-left-column .add {
+  margin: 0.5em;
+}
+.page .left-column {
+  flex: 2;
+  border-right: 0.1px solid grey;
+  padding-top: 1em;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) #f1f1f1;
+}
+
+.page .left-column::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.page .left-column::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 1px;
+}
+
+.page .left-column::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.page .left-column::-webkit-scrollbar-button {
+  display: none;
+}
+
+.page .right-column {
+  flex: 8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.margin-header {
+  padding-left: 1em;
+  padding-right: 0.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.icon {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.file-item:hover .icon-container .icon {
+  visibility: visible;
+}
+
+.icon-container .icon {
+  transition: visibility 0.3s ease;
+}
+
+.templateX-container {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.templateX-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(1px);
+  z-index: 5;
+}
+
+.templateX-content {
+  width: 80%;
+  max-width: 600px;
+}
+
+.templateX-header {
+  text-align: center;
+}
+
+.templateX-textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.templateX-suggestions {
+  list-style-type: none;
+  padding-left: 0;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  z-index: 10;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  max-height: 200px;
+  overflow-y: auto;
+  max-width: 100%;
+}
+
+.templateX-suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.templateX-suggestion-item.selected {
+  background-color: #f0f0f0;
+}
+
+.templateX-button {
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* Styling for the template card container */
+.add-template-card {
+  position: fixed;
+  top: 20%;
+  left: 30%;
+  font-family: Arial, sans-serif;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  z-index: 50;
+}
+
+/* Header Styling */
+.add-template-card h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.add-template-card h3 {
+  font-size: 20px;
+  color: #444;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Template Name Input */
+.add-template-card div:first-child {
+  margin-bottom: 20px;
+}
+
+.add-template-card label {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.add-template-card input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+.add-template-card input[type="text"]:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+/* Template Logo Section */
+.add-template-card .material-icons {
+  display: inline-block;
+  font-size: 36px;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.add-template-card .material-icons:hover {
+  color: #4caf50;
+}
+
+/* Add Template Button */
+.add-template-card button {
+  width: 100%;
+  padding: 14px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.add-template-card button:hover {
+  background-color: #45a049;
+}
+
+.add-template-card button:focus {
+  outline: none;
+}

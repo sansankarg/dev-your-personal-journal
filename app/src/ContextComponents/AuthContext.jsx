@@ -6,7 +6,9 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
-  const [user,setUserdetails]=useState({})
+  const [user, setUserdetails] = useState({});
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showSignupModal, setShowSignupModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,7 +37,15 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, logout, user}}>
+    <AuthContext.Provider value={{ 
+      isAuthenticated,
+      user,
+      logout,
+      showLoginModal,
+      showSignupModal,
+      setShowLoginModal,
+      setShowSignupModal
+    }}>
       {children}
     </AuthContext.Provider>
   );

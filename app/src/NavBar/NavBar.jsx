@@ -33,6 +33,7 @@ const NavBar = ({ handleShowTemplate, handleBookMark, handleFiles, toggleSignup,
   useEffect(() => {
     const fetchFiles = async () => {
       try {
+        if (!user?._id) return;
         const response = await axios.post('http://localhost:5000/get-markdown-to-link', {userId : user._id});
         console.log(user._id);
         setFiles(response.data);
@@ -59,7 +60,7 @@ const NavBar = ({ handleShowTemplate, handleBookMark, handleFiles, toggleSignup,
     };
 
     fetchFiles();
-  }, [searchSynapseQuery]);
+  }, [searchSynapseQuery,user?._id]);
   
     const fileNameSuggestions = (currentWord) => {
       if (!currentWord) {
@@ -228,7 +229,7 @@ const NavBar = ({ handleShowTemplate, handleBookMark, handleFiles, toggleSignup,
           </ul>
           
 
-          <span className="navbar-brand mx-auto custom-text-color">{user.firstName}_</span>
+          <span className="navbar-brand mx-auto custom-text-color">{user?.firstName || 'Guest'}_</span>
 
 
           <div className="navbar-nav ms-auto">

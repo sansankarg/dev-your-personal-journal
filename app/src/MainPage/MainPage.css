@@ -147,97 +147,112 @@
   font-size: 16px;
 }
 
-/* Styling for the template card container */
 .add-template-card {
   position: fixed;
-  top: 20%;
-  left: 30%;
-  font-family: Arial, sans-serif;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 600px;
-  z-index: 50;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  z-index: 1000;
+  animation: slideIn 0.3s ease-out;
 }
 
-/* Header Styling */
+@keyframes slideIn {
+  from { opacity: 0; transform: translate(-50%, -60%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
 .add-template-card h2 {
-  font-size: 24px;
+  color: #2d3748;
+  font-size: 1.5rem;
   font-weight: 600;
-  color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
   text-align: center;
 }
 
 .add-template-card h3 {
-  font-size: 20px;
-  color: #444;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-/* Template Name Input */
-.add-template-card div:first-child {
-  margin-bottom: 20px;
-}
-
-.add-template-card label {
-  display: block;
-  font-size: 16px;
+  color: #4a5568;
+  font-size: 1.1rem;
   font-weight: 500;
-  margin-bottom: 8px;
-  color: #555;
+  margin: 1.5rem 0 1rem;
 }
 
-.add-template-card input[type="text"] {
+.template-input-group {
+  margin-bottom: 1.5rem;
+}
+
+.template-input-group label {
+  display: block;
+  color: #4a5568;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.template-input-group input {
   width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin-top: 5px;
-  box-sizing: border-box;
+  padding: 0.8rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
 }
 
-.add-template-card input[type="text"]:focus {
-  border-color: #4caf50;
+.template-input-group input:focus {
   outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-/* Template Logo Section */
-.add-template-card .material-icons {
-  display: inline-block;
-  font-size: 36px;
-  color: #333;
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.icon-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
   cursor: pointer;
-  transition: color 0.3s;
+  transition: all 0.2s;
 }
 
-.add-template-card .material-icons:hover {
-  color: #4caf50;
+.icon-option:hover {
+  border-color: #667eea;
+  background: #f8f9ff;
 }
 
-/* Add Template Button */
-.add-template-card button {
+.icon-option.selected {
+  border-color: #667eea;
+  background: #667eea15;
+}
+
+.add-template-button {
   width: 100%;
-  padding: 14px;
-  background-color: #4caf50;
+  padding: 0.8rem;
+  background: #667eea;
   color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 16px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top: 20px;
+  transition: background 0.2s;
 }
 
-.add-template-card button:hover {
-  background-color: #45a049;
+.add-template-button:hover {
+  background: #5a67d8;
 }
 
-.add-template-card button:focus {
-  outline: none;
+.add-template-button:active {
+  background: #4c51bf;
 }

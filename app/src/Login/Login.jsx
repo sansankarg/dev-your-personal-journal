@@ -4,7 +4,7 @@ import { useAuth } from "../ContextComponents/AuthContext";
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
-const Login = () => {
+const Login = ({ onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -40,9 +40,8 @@ const Login = () => {
   return (
     <div className="login-overlay">
       <div className="login-card">
-        <div className="image-container">
-          {/* Optional: Add your logo or any other image in the left side */}
-        </div>
+      
+        
         <div className="form-container">
           <h2>Login</h2>
           <form onSubmit={handleLogin}>

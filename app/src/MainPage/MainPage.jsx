@@ -10,13 +10,20 @@ import { useAuth } from "../ContextComponents/AuthContext";
 import AddTemplate from '../AddTemplate/AddTemplate';
 
 const MainPage = ({ toggleSignup, toggleLogin }) => {
+  const { isAuthenticated, setShowLoginModal } = useAuth();
+
+  useEffect(() => {
+    if (isAuthenticated === false) {
+      setShowLoginModal(true);
+    }
+  }, [isAuthenticated, setShowLoginModal]);
   const navigate = useNavigate();
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [files, setFiles] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null); 
   const [template, setTemplate] = useState([]);
-  const [showTemplate, setShowTemplate] = useState(false);
+  const [showTemplate, setShowTemplate] = useState(true);
   const [selectedTemplate, setSelectedTemplate] = useState(null); 
   const [bookmarks, setBookmarks] = useState(false);
   const [filesFlag, setFilesFlag] = useState(true);
@@ -28,6 +35,8 @@ const MainPage = ({ toggleSignup, toggleLogin }) => {
   const [addTemplateToggle, setAddTemplateToggle] = useState(false)
   const [templateName, setTemplateName] = useState('');
   const [selectedIcon, setSelectedIcon] = useState('');
+
+  
 
   const icons = [
     'home', 'search', 'settings', 'email', 'star', 'phone', 'person', 'info', 
@@ -57,7 +66,7 @@ const MainPage = ({ toggleSignup, toggleLogin }) => {
     if (user._id) {
       fetchTemplates(); 
     }
-  }, [user._id]);
+  }, [user?._id]);
   
 
   const goToFile = (id) => {
@@ -120,11 +129,12 @@ const MainPage = ({ toggleSignup, toggleLogin }) => {
       fetchFiles();
     }
 
-  }, [user, addTemplateToggle]);
+  }, [user?._id, addTemplateToggle]);
 
   useEffect(() => {
     const fetchFileData = async () => {
       try {
+        if (!id || !user?._id) return;
         const response = await axios.post(`http://localhost:5000/get-markdown/${id}`,{id : user._id});
         setData(response.data);
         console.log("Fetched data : ", response.data);
@@ -133,7 +143,7 @@ const MainPage = ({ toggleSignup, toggleLogin }) => {
       }
     };
     fetchFileData();
-  }, [id]);
+  }, [id, user?._id]);
 
 
   const handleFileClick = (file) => {
@@ -327,35 +337,38 @@ ${tableRows}`.trim();
       {addTemplateToggle && (<>
         <div className="templateX-overlay" onClick={()=>setAddTemplateToggle(false)}/>
         <div className="add-template-card">
-                    <div>
-                <h2>Enter Template Details</h2>
-                <div>
-                  <label>Template Name:</label>
-                  <input
-                    type="text"
-                    value={templateName}
-                    onChange={(e) => setTemplateName(e.target.value)}
-                    placeholder="Template Name"
-                  />
-                </div>
-                <div>
-                  <h3>Select Template Logo</h3>
-                  <div>
-                    {icons.map((icon, index) => (
-                      <span
-                        key={index}
-                        className="material-icons"
-                        onClick={() => handleIconClick(icon)}
-                        style={{ fontSize: '24px', cursor: 'pointer', margin: '5px' }}
-                      >
-                        {icon}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <button onClick={addTemplate}>Add Template</button>
-              </div>
-            </div></>
+  <div>
+    <h2>Create New Template</h2>
+    <div className="template-input-group">
+      <label>Template Name</label>
+      <input
+        type="text"
+        value={templateName}
+        onChange={(e) => setTemplateName(e.target.value)}
+        placeholder="Enter template name..."
+      />
+    </div>
+    
+    <h3>Choose Template Icon</h3>
+    <div className="icon-grid">
+      {icons.map((icon, index) => (
+        <div
+          key={index}
+          className={`icon-option ${selectedIcon === icon ? 'selected' : ''}`}
+          onClick={() => handleIconClick(icon)}
+        >
+          <span className="material-icons" style={{ fontSize: '24px', color: selectedIcon === icon ? '#667eea' : '#4a5568' }}>
+            {icon}
+          </span>
+        </div>
+      ))}
+    </div>
+    
+    <button className="add-template-button" onClick={addTemplate}>
+      Create Template
+    </button>
+  </div>
+</div></>
       )}
 
       <div className="page">

@@ -23,6 +23,7 @@ const Template = ({ fileData, onFileNameChange }) => {
   useEffect(() => {
     const fetchFiles = async () => {
       try {
+        if (!user?._id) return;
         const response = await axios.post('http://localhost:5000/get-markdown-to-link',{userId : user._id});
         setFiles(response.data);
       } catch (error) {
@@ -80,7 +81,7 @@ const Template = ({ fileData, onFileNameChange }) => {
 
     if (!currentWord) return;
 
-    if (event.altKey && event.shiftKey) {
+    if (event.ctrlKey && event.shiftKey && event.key === 'S') {
       event.preventDefault();
 
       if (currentWord.startsWith('[[') && currentWord.endsWith(']]')) {
@@ -105,7 +106,7 @@ const Template = ({ fileData, onFileNameChange }) => {
           textarea.focus();
         }, 0);
       }
-    } else if (event.ctrlKey && event.shiftKey && event.key === 'S') {
+    } else if (event.altKey && event.shiftKey) {
       event.preventDefault();
       if (currentWord.startsWith('^^') && currentWord.endsWith('^^')) {
         return;

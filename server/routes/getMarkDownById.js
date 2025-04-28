@@ -1,9 +1,9 @@
 const express=require('express')
 const router=express.Router()
 const MarkDown = require('../models/markDown')
-router.post('/', async(req, res)=>{
-  const id = res.locals.id;
-  const userId = req.body.id;
+router.post('/:id', async(req, res)=>{
+  const{id} = req.params;
+  const {userId} = req.body;
   console.log("User id : ",userId)
   try {
     const file = await MarkDown.findById(id);

@@ -1,25 +1,28 @@
-const express=require('express')
-const router=express.Router()
-const MarkDown = require('../models/markDown')
-router.post('/', async (req, res) => {
-    const id = res.locals.id;
-    const userId = req.body.userId;
-    console.log("Delete request received for ID:", id, "and User ID:", userId);
+const express = require('express');
+const router = express.Router();
+const MarkDown = require('../models/markDown');
 
-      try {
-        const file = await MarkDown.findOne({ _id: id, userId: userId });
+router.delete('/', async (req, res) => {
+  const {userId, markDownId} = req.body;
+  // const { id } = req.params;
+  // const userId = req.query.userId;
+  console.log("Delete request received for ID:", markDownId, "and User ID:", userId);
 
-        if (!file) {
-          return res.status(404).json({ message: 'File not found or access denied' });
-        }
+  try {
+    const file = await MarkDown.findOne({ _id: markDownId, userId: userId });
 
-        await MarkDown.findByIdAndDelete(id);
-        console.log("File deleted successfully for ID:", id);
+    if (!file) {
+      return res.status(404).json({ message: 'File not found or access denied' });
+    }
 
-        res.status(200).json({ message: 'File deleted successfully' });
-      } catch (error) {
-        console.error('Error deleting markdown file:', error);
-        res.status(500).json({ message: 'Error deleting file' });
-      }
-  });
-module.exports=router
+    await MarkDown.findByIdAndDelete(markDownId);
+    console.log("File deleted successfully for ID:", markDownId);
+
+    res.status(200).json({ message: 'File deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting markdown file:', error);
+    res.status(500).json({ message: 'Error deleting file' });
+  }
+});
+
+module.exports = router;

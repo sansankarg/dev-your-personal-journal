@@ -13,12 +13,10 @@ router.delete('/', async (req, res) => {
             return res.status(404).json({ error: 'User not found' });
         }
 
-        // Ensure that the index is valid
         if (templateIndex < 0 || templateIndex >= user.templates.length) {
             return res.status(400).json({ error: 'Invalid template index' });
         }
 
-        // Remove the template from the array at the given index
         user.templates.splice(templateIndex, 1);
 
         await user.save();

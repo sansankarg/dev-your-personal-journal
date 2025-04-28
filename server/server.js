@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(cookieParser())
 app.use(express.json())
 
-mongoose.connect(`${process.env.REACT_APP_BACKEND_URL}`, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://dev:ArthurRevolt@projectiii.ww0j5.mongodb.net/?retryWrites=true&w=majority&appName=projectiii', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.log('Error connecting to MongoDB', err));
 
@@ -45,12 +45,7 @@ const deleteTemplate = require('./routes/deleteTemplate')
 app.use('/delete-template',deleteTemplate)
 
 const getMarkDownById = require('./routes/getMarkDownById')
-app.use('/get-markdown/:id', (req, res, next)=>{
-  console.log("Get request reached server to get markdown: ", req.params.id)
-  res.locals.id = req.params.id;
-  next();
-})
-app.use('/get-markdown/:id', getMarkDownById)
+app.use('/get-markdown', getMarkDownById)
 
 const updateMarkDownById = require('./routes/updateMarkDownById')
 app.use('/update-markdown/:id', (req, res, next)=>{
@@ -68,21 +63,18 @@ app.use('/update-markdown/:id', (req, res, next)=>{
 app.use('/update-markdown/:id', updateMarkDownById)
 
 const deleteMarkDownById = require('./routes/deleteMarkDownById')
-app.use('/delete-markdown/:id', (req, res, next)=>{
-  console.log("Delete request reached server of id : ",req.params.id);
-  res.locals.id = req.params.id;
-  next();
-})
-app.use('/delete-markdown/:id',deleteMarkDownById)
+app.use('/delete-markdown', deleteMarkDownById);
+
 
 const bookMarkMarkDownById = require('./routes/bookMarkMarkDownById')
-app.use('/bookmark-markdown/:id', (req, res, next)=>{
-  console.log("Bookmark request reached server of id : ",req.params.id);
-  res.locals.id = req.params.id;
-  res.locals.bookmark = req.body.bookmark;
-  next();
-})
-app.use('/bookmark-markdown/:id',bookMarkMarkDownById)
+// app.use('/bookmark-markdown/:id', (req, res, next)=>{
+//   console.log("Bookmark request reached server of id : ",req.params.id);
+//   res.locals.id = req.params.id;
+//   res.locals.userId = req.query.userId;
+//   res.locals.bookmark = req.body.bookmark;
+//   next();
+// })
+app.use('/bookmark-markdown',bookMarkMarkDownById)
 
 const saveMarkDown = require('./routes/saveMarkdown');
 app.use('/save-markdown',saveMarkDown);
@@ -98,6 +90,7 @@ app.use('/get-bookmarked-markdown',getBookMarkedMarkDown);
 
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log("Server running on port 5000");
 });
+

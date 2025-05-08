@@ -3,12 +3,14 @@ import axios from "axios";
 import { useAuth } from "../ContextComponents/AuthContext";
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
-
+import { authService, FileService } from "../services/apiServices";
+import { useStatus } from "../ContextComponents/StatusContext";
 const Login = ({ onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const { isAuthenticated } = useAuth();
+  const { setIsAuthenticated, isAuthenticated , setShowLoginModal, setUserdetails } = useAuth();
+  const {status, setStatus} = useStatus();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,27 +20,35 @@ const Login = ({ onClose }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/login", {
-        email,
-        password,
-      }, { withCredentials: true });
+      const response = await authService.login(email, password);
 
       if (response.data.message === "Login Successful") {
         setMessage("Login Successful!");
-        navigate('/');
-        window.location.reload()
-        alert("Sign in successful")
+        const response = await authService.login(email, password)
+        const user = response.data.user;
+        setIsAuthenticated(true)
+        setUserdetails(user);
+        const files = await FileService.getFiles(user._id);
+        console.log("GOT : ", files.data);
+        console.log("GOT : ", user);
+        // setTimeout(
+        //   () => navigate(`/${files.data[files.data.length - 1].fileName}`),
+        //   0
+        // );
+        setStatus('online');
+        setShowLoginModal(false);
       } else {
         setMessage(response.data.message);
       }
     } catch (error) {
       console.error("Error during login:", error);
-      setMessage("An error occurred. Please try again.");
+      setMessage("Invalid credentials");
     }
   };
 
-  return (
-    <div className="login-overlay">
+  return (<>
+      <div className="login-modal-overlay" onClick={()=> setShowLoginModal(false)}/>
+ 
       <div className="login-card">
       
         
@@ -69,8 +79,7 @@ const Login = ({ onClose }) => {
           </form>
           {message && <p className="message">{message}</p>}
         </div>
-      </div>
-    </div>
+    </div></>
   );
 };
 

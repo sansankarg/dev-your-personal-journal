@@ -1,37 +1,54 @@
 {
   "name": "app",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "electron": "electron .",
+  "dist": "electron-builder",
+  "main": "electron/main.js",
+  "description": "he is dev",
+  "author": "Arthur Revolt",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "preview": "vite preview",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "electron": "electron .",
+    "electron-pack": "npx electron-builder"
+  },
+  "build": {
+    "asar": true,
+    "appId": "dev",
+    "productName": "dev",
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "directories": {
+      "output": "release-builds"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    }
   },
   "dependencies": {
-    "@mui/icons-material": "^6.4.0",
-    "@uiw/react-codemirror": "^4.23.7",
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
-    "hypermd": "^0.3.11",
+    "date-fns": "^4.1.0",
     "lodash": "^4.17.21",
     "marked": "^15.0.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-markdown": "^9.0.3",
-    "react-router-dom": "^7.1.2",
-    "rehype-react": "^8.0.0",
-    "remark": "^15.0.1",
-    "remark-gfm": "^4.0.0",
-    "remark-rehype": "^11.1.1",
-    "unist-util-visit": "^5.0.0"
+    "react-router-dom": "^7.1.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^36.1.0",
+    "electron-builder": "^24.13.3",
     "eslint": "^9.17.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",

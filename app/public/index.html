@@ -1,11 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Electron App</title>
   </head>
   <body>
+    <div id="custom-title-bar">
+      <div class="drag-region">
+        <span>My App</span>
+        <div class="window-controls">
+          <button onclick="window.api.minimize()">—</button>
+          <button onclick="window.api.maximize()">□</button>
+          <button onclick="window.api.close()">×</button>
+        </div>
+      </div>
+    </div>
     <div id="root"></div>
   </body>
 </html>

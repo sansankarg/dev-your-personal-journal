@@ -1,0 +1,118 @@
+.card {
+    padding: 1.75rem;
+    border: 1px solid var(--main-page-border-color);
+    border-radius: 12px;
+    width: 420px;
+    margin: 2rem auto;
+    background-color: var(--navbar-background-color);
+    box-shadow: 0 1px 3px var(--overlay-bg);
+}
+
+.card .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.card .header h2 {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.card .header .toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background: var(--add-template-icon-hover-bg);
+    border: 1px solid var(--add-template-border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.card .header .toggle:hover {
+    background: var(--add-template-icon-selected-bg);
+    transform: translateY(-1px);
+}
+
+.card .header .toggle-text {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.card .status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+.card .status-indicator .status-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.card .status-indicator .status-dot.online {
+    background: #10b981;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+}
+
+.card .status-indicator .status-dot.offline {
+    background: #64748b;
+}
+
+.card .button {
+    width: 100%;
+    padding: 1rem;
+    background: var(--add-template-button-bg);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    margin: 0.5em;
+}
+
+.offline-content .button:hover {
+    background: var(--add-template-button-hover);
+    transform: translateY(-1px);
+}
+
+.offline-content .auth-button {
+    background: var(--synapse-bg);
+    color: var(--synapse-text);
+}
+
+.offline-content .path {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: var(--overlay-bg);
+    border-radius: 8px;
+    font-size: 0.85rem;
+}
+
+.offline-content .path-label {
+    display: block;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.offline-content .path-value {
+    color: var(--text-primary);
+    word-break: break-all;
+    line-height: 1.4;
+}
+.offline-content .guide {
+    color: var(--text-primary);
+    margin-left: 0.65rem;
+    font-size: 0.75rem;
+}

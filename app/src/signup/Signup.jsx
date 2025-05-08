@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './Signup.css';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../ContextComponents/AuthContext';
 
 const Signup = () => {
+  const {setShowSignupModal, setShowLoginModal} = useAuth();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
+    haven: '',
     password: '',
   });
 
@@ -26,9 +29,8 @@ const Signup = () => {
       const response = await axios.post('http://localhost:5000/signup', formData, { withCredentials: true });
 
       setSuccessMessage(response.data.message);
-      navigate('/');
-      window.location.reload()
-      alert("Sign in successful")
+      setShowSignupModal(false)
+      setShowLoginModal(true)
       setError('');
     } catch (err) {
       setError('Error during registration. Please try again.');
@@ -36,11 +38,9 @@ const Signup = () => {
     }
   };
 
-  return (
-    <div className="signup-overlay">
+  return (<>
+    <div className="signup-modal-overlay" onClick={() => setShowSignupModal(false)}/>
     <div className="signup-card">
-      <div className="image-container">
-        </div>
       <div className="form-container">
         <h2>Signup</h2>
         <form onSubmit={handleSubmit}>
@@ -75,6 +75,15 @@ const Signup = () => {
             />
           </div>
           <div className="form-group">
+            <label>Haven name :</label>
+            <input
+              name="haven"
+              value={formData.haven}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
             <label>Password:</label>
             <input
               type="password"
@@ -90,7 +99,7 @@ const Signup = () => {
         {successMessage && <p className="success-message">{successMessage}</p>}
       </div>
     </div>
-    </div>
+    </>
   );
 };
 

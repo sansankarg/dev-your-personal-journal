@@ -1,26 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Template from './Template/Template';
 import MainPage from './MainPage/MainPage';
 import Login from './Login/Login';
 import Signup from './signup/Signup';
-import MainPageA from './MainPage copy/MainPage1';
+import { StatusProvider } from './ContextComponents/StatusContext';
 import ModalContainer from './ContextComponents/ModelContainer';
 import { AuthProvider } from "./ContextComponents/AuthContext";
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+
 
 function App() {
   return (
     <Router>
+      <StatusProvider>
       <AuthProvider>
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/:id" element={<MainPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
         </Routes>
         <ModalContainer />
       </AuthProvider>
+      </StatusProvider>
     </Router>
   );
 }

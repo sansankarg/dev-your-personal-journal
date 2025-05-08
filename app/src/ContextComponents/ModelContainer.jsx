@@ -15,17 +15,14 @@ const ModalContainer = () => {
     <>
       {showSignupModal && (
         <div className="login-modal-overlay">
-          <div className="login-modal">
             <Signup onClose={() => setShowSignupModal(false)} />
-          </div>
         </div>
       )}
 
       {showLoginModal && (
         <div className="login-modal-overlay">
-          <div className="login-modal">
             <Login onClose={() => setShowLoginModal(false)} />
-          </div>
+
         </div>
       )}
     </>

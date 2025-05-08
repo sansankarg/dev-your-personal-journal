@@ -4,6 +4,7 @@ var userSchema=mdb.Schema({
     firstName:String,
     lastName:String,
     email: { type: String, unique: true, required: true},
+    haven:String,
     password: { type: String, required: true, minlength: 6 },
     synapses: [String],
     templates: [{

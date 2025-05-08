@@ -1,9 +1,194 @@
+/* @import url('https://fonts.googleapis.com/icon?family=Material+Icons'); */
 
+/* Pallette 1 : */
+:root {
+  /* common */
+  --icon-color: #5d5d5d;
+  --icon-hover: #3b82f6;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
 
-/* --------------Template------------------------------------------- */
+  /* Login page */
+  --input-focus-border: #667eea;
+  --button-active: #4c51bf;
+  --query-highlight:#3b83f645;
 
-.custom-syntax {
-  font-weight: bold;
-  color: red;
+  /* Navbar.jsx */
+  --navbar-background-color:#ffffff;
+  --navbar-background-border-color:#e2e8f0;
+  --navbar-textbox-bg:#ffffff;
+  
+  /* Mainpage.jsx */
+  --main-page-sidebar-bg: #ffffff;
+  --main-page-file-names-hover: #f1f5f9;
+  --main-page-border-color: #e2e8f0;
+
+  /* Editor.jsx  */
+
+  /* Editor component */
+  --editor-background-color: #ffffff;
+  --editor-border-color: #e2e8f0;
+
+  /* Suggestion card component */
+  --overlay-bg: rgba(255, 255, 255, 0.06);
+  --suggestion-card-bg: #ffffff;
+  --suggestion-card-border: #ccc;
+  --suggestion-element-hover: #dedede;
+
+  /* Add-template-card specific variables */
+  --add-template-card-bg: #ffffff;
+  --add-template-border: #e2e8f0;
+  --add-template-icon-border: #e2e8f0;
+  --add-template-icon-hover-bg: #f8f9ff;
+  --add-template-icon-selected-bg: rgba(102, 126, 234, 0.09);
+  --add-template-button-bg: #667eea;
+  --add-template-button-hover: #5a67d8;
+  --add-template-button-active: #4c51bf;
+
+  /* md components */
+  --link-color: #3b82f6;
+  --synapse-bg: #eff6ff;
+  --synapse-text: #1d4ed8;
+  --table-bg: #f8fafc;
+  --table-border-color: #e2e8f0;
+
+  /* miscellaneous */
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-track: #f8fafc;
 }
 
+[data-theme="dark"] {
+
+  /* common */
+  --icon-color: #6c757d;
+  --icon-hover: #4dabf7;
+  --text-primary: #f8f9fa;
+  --text-secondary: #adb5bd;
+  
+  /* Login page */
+  --input-focus-border: #4dabf7;
+  --button-active: #3182ce;
+  
+  /* Navbar.jsx */
+  --navbar-background-color:#1a1a1a;
+  --navbar-background-border-color:#2d2d2d;
+  --navbar-textbox-bg: #2d2d2d;
+
+  /* Mainpage.jsx component */
+  --main-page-sidebar-bg: #2d2d2d;
+  --main-page-border-color: #495057;
+  --main-page-file-names-hover: #3d3d3d;
+  --main-page-border-color: #495057;
+
+  /* Editor.jsx  */
+  /* Editor component */
+  --editor-background-color: #1c1c1c;
+  --editor-border-color: #495057;
+
+  /* Suggestion card component */
+  --overlay-bg: rgba(26, 26, 26, 0.1);
+  --suggestion-card-bg: #2d2d2d;
+  --suggestion-card-border: #495057;
+  --suggestion-element-hover: #444343;
+
+  /* Add-template-card specific variables */
+  --add-template-card-bg: #2d2d2d;
+  --add-template-border: #495057;
+  --add-template-icon-border: #495057;
+  --add-template-icon-hover-bg: rgba(77, 171, 247, 0.05);
+  --add-template-icon-selected-bg: rgba(77, 171, 247, 0.15);
+  --add-template-button-bg: #4dabf7;
+  --add-template-button-hover: #4299e1;
+  --add-template-button-active: #3182ce;
+
+  /* md components */
+  --link-color: #4dabf7;
+  --synapse-bg: rgba(77, 171, 247, 0.1);
+  --synapse-text: #4dabf7;
+  --table-bg: #2d2d2d;
+  --table-border-color: #495057;
+
+  /* miscellaneous */
+  --scrollbar-thumb: #495057;
+  --scrollbar-track: #2d2d2d;
+}
+
+/* Pallette 2 */
+[data-theme="dark-1"] {
+  /* common */
+  --icon-color: #6c757d;
+  --icon-hover: #9b59b6;
+  --text-primary: #ecf0f1;
+  --text-secondary: #bdc3c7;
+
+  /* Login page */
+  --input-focus-border: #9b59b6;
+  --button-active: #7d3c98;
+
+  /* Navbar */
+  --navbar-background-color: #2d1a2d;
+  --navbar-background-border-color: #3d2a3d;
+
+  /* Mainpage */
+  --main-page-sidebar-bg: #2d1a2d;
+  --main-page-border-color: #4a3a4a;
+  --main-page-file-names-hover: #3d2a3d;
+
+  /* Editor */
+  --editor-background-color: #1a121a;
+  --editor-border-color: #4a3a4a;
+
+  /* Suggestion card */
+  --overlay-bg: rgba(45, 26, 45, 0.1);
+  --suggestion-card-bg: #3d2a3d;
+  --suggestion-card-border: #5c4a5c;
+  --suggestion-element-hover: #4d3a4d;
+
+  /* Add-template-card */
+  --add-template-card-bg: #3d2a3d;
+  --add-template-border: #5c4a5c;
+  --add-template-icon-border: #5c4a5c;
+  --add-template-icon-hover-bg: rgba(155, 89, 182, 0.05);
+  --add-template-icon-selected-bg: rgba(155, 89, 182, 0.15);
+  --add-template-button-bg: #9b59b6;
+  --add-template-button-hover: #8e44ad;
+  --add-template-button-active: #7d3c98;
+
+  /* md components */
+  --link-color: #9b59b6;
+  --synapse-bg: rgba(155, 89, 182, 0.1);
+  --synapse-text: #8e44ad;
+  --table-bg: #3d2a3d;
+  --table-border-color: #5c4a5c;
+
+  /* misc */
+  --scrollbar-thumb: #5c4a5c;
+  --scrollbar-track: #3d2a3d;
+}
+
+#custom-title-bar {
+  height: 30px;
+  background-color: #1e1e1e;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  -webkit-app-region: drag;
+  padding: 0 10px;
+  user-select: none;
+}
+
+.window-controls {
+  display: flex;
+  gap: 10px;
+  -webkit-app-region: no-drag;
+}
+
+.window-controls button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0 5px;
+}
